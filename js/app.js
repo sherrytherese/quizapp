@@ -34,17 +34,16 @@ $(document).ready(function(){
 	$(".questionNumber").text("Question "+ questions[0].questionNumber + " of" +questions.length);
 
 	//Get User Answers
-	function getCheckedValue() {
+	$(".radio").on("click", function getCheckedValue() {
 		var radio = document.getElementsByName('check');
 		var val = "";
 		for (var i = 0, length = radio.length; i <length; i++){
 			if (radio[i].checked){
 				val = radio[i].value;
-				break;
 				console.log(val);
 			}
 		}
-	}
+	})
 		
 	//Check answer 
 	function checkAnswer(){
