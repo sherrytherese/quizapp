@@ -84,6 +84,7 @@ $(document).ready(function(){
 
 		//attach next set of choices
 		$.each(multChoice,function(index,value){
+			console.log(index+value);
 		$(".quizAnswers").append("<label class='radio'><ul><input type='radio' name='check' data-ans=" + index +">"+ "    "+ value+"</label></ul>");
 		});				                  
 	}
