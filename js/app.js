@@ -1,126 +1,85 @@
-//Variables
+/*Global Variables*/
 	var questionNumber = 0;
 	var counter = 0;
 	var userAnswers = new Array();
 	var correctAnswers = 0;
-
-$(document).ready(function(){
 	var score = [];
 	var questions = [
-		{question: "What kind of router do you currently use?",
-		choices: ["Netgear", "Apple", "Securifi", "I'm not sure"],
-		correctAnswer: 2, //how do I pair up a value to each answer? ie = Netgear = 1, Apple = 2 etc.
-		questionNumber: 1},
+		{question: "Which cat eats all your food?",
+		choices: ["Tubbs", "Peaches", "Bandit"],
+		correctAnswer: 1, //how do I pair up a value to each answer? ie = Netgear = 1, Apple = 2 etc.
+		questionNumber: 0},
 
 
-		{question: "How large is your home?",
-		choices: ["Apartment", "Small Home", "Large Home"],
+		{question: "Which cat leaves the most fish?",
+		choices: ["Fred", "Miss Fortune", "Chairman Meow"],
 		correctAnswer: 2,
-		questionNumber: 2}, 
+		questionNumber: 1}, 
 
-		{question: "What do you want from your router?",
-		choices: ["No more dead spots", "Always connected", "Look beautiful"],
+		{question: "How many cats can fit on the giant cushion?",
+		choices: ["1", "2", "3"],
 		correctAnswer: 2,
+		questionNumber: 2},
+
+		{question: "Which Goodie holds the most cats?",
+		choices: ["Tiramisu Cube", "Cardboard Train", "Cat Metropolis"],
+		correctAnswer: 3,
 		questionNumber: 3},
-	];
-	//First Question
-	$(".quizQuestions").text(questions[questionNumber].question);
-	var multChoice = $.each(questions[questionNumber].choices,function(index,value){value});
-	$.each(multChoice,function(index,value){
-		$(".quizAnswers").append("<label class='radio'><ul><input type='radio' name='check' data-ans=" + index +">"+ "    "+ value+"</label></ul>");
-	});
 
-	//Question Number
-	$(".questionNumber").text("Question "+ questions[0].questionNumber + " of" +questions.length);
+		{question: "What's the Gold Fish Exchange Rate?'",
+		choices: ["10x250", "10x300", "10x500"],
+		correctAnswer: 3,
+		questionNumber: 4},
 
-	//Get User Answers
-	$(".radio").on("click", function getCheckedValue() {
-		var radio = document.getElementsByName('check');
-		var val = "";
-		for (var i = 0, length = radio.length; i <length; i++){
-			if (radio[i].checked){
-				val = radio[i].value;
-				console.log(val);
-			}
-		}
-	})
-		
-	//Check answer 
-	function checkAnswer(){
-		var userAnswers = $("input[type=radio]:checked").data("ans");
-		userAnswers.push(userAnswers);
-		console.log(userAnswers);
-
-		if (userAnswers === questions[counter].correctAnswer){
-			correctAnswers++;
-		}
-		counter++;
-		console.log(counter);
-		console.log(correctAnswers);
+		{question: "What Goodie gets Xerxes IX?",
+		choices: ["Sashimi", "Zanzibar Cushion", "Royal Bed"],
+		correctAnswer: 2,
+		questionNumber: 5},
+	]
+/*Functions*/
+//Display the Questions
+function displayChoices () {
+	for (var i = 0; i <questions[questionNumber].choices.length; i++){
+	var currentChoices = questions[questionNumber].choices[i];
+	$(".myChoices"+i).text("    "+currentChoices);
 	}
+}
 
-	//On Submit Button
-	$(".submitButton").on("click", function(){
+function displayQuestions() {
+	currentQuestion = questions[questionNumber].question;
+	$(".quizQuestions").text(currentQuestion);
+}
+
+/*Document Ready*/
+$(document).ready(function(){
+	displayQuestions();
+	displayChoices();
+
+	//Submit Button
+	$(".submitButton").click(function(){
+		
+		//Get user selection
+		var userInput = $('input[name=myChoices]:checked').val();
+		console.log("userInput is "+userInput)
+
+		//Compare user selection to correct answer
+		if (userInput == questions[questionNumber].correctAnswer) {
+			correctAnswers++ //increase the correctAnswers count
+		}
+		console.log("Total correctAnswers are "+correctAnswers);
+		console.log("correctAnswer for this question is "+questions[questionNumber].correctAnswer);
+		//Increase questionNumber
 		questionNumber++;
-		if (questionNumber == questions.length){
-			$(this).css("display","none");
-		}
-		else {
-			nextQuestion();
-		};
-	});
-
-
-	//Next Question
-	function nextQuestion(){
-		$(".questionNumber").text("Question "+ questions[0].questionNumber + " of" +questions.length);
-		$(".quizQuestions").text(questions[questionNumber].question);
-		
-		//previous choices to remove
-		var multChoice = $.each(questions[questionNumber-1].choices,function(index,value){value});
-		console.log(multChoice);
-		multChoice.splice(0);
-		console.log(multChoice);
-
-		//attach next set of choices
-		$.each(multChoice,function(index,value){
-			console.log(index+value);
-		$(".quizAnswers").append("<label class='radio'><ul><input type='radio' name='check' data-ans=" + index +">"+ "    "+ value+"</label></ul>");
-		});				                  
-	}
-
+		console.log("questionNumber is "+questionNumber);
+		displayQuestions();
+		displayChoices();
+	})
 	
+
 
 })
 
 
 
-/*
-	$("#question1").show();
-	$("#choices1").show();
-	$("#question2").hide();
-	$("#choices2").hide();
-	$("#question3").hide();
-	$("#choices3").hide();
 
-	//question 2
-	$(document).on("click",":submit",function(){
-		event.preventDefault();
-		$("#question1").hide();
-		$("#choices1").hide();
-		$("#question2").show();
-		$("#choices2").show();
 
-		//question 3
-		$(document).on("click",":submit",function(){
-			event.preventDefault();
-			$("#question2").hide();
-			$("#choices2").hide();
-			$("#question3").show();
-			$("#choices3").show();
-		})
-	})
-
-	
-}); 
-*/
