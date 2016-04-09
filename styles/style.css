@@ -1,5 +1,6 @@
 
 body {
+	background-color: #F8D08B;
 	position: relative;
 	width: 98%;
 	height: 96%;
@@ -8,11 +9,26 @@ body {
 	font-family: 'Raleway';
 }
 
+.main {
+	background-image: url('../images/peachesBackground.png');
+	background-size: 95%;
+	background-repeat: no-repeat;
+	margin-top: 3rem;
+	padding-left: 5rem;
+	padding-right: 5rem;
+	height: 30rem;
+}
 .title {
 	font-family: 'Palanquin', sans-serif;
 	font-size: 3em;
 }
-
+.questionNumber {
+	margin-bottom:1rem;
+	font-style: italic;
+}
+.quizQuestions {
+	margin-bottom: .5rem;
+}
 .submitButton{
 	margin-top: 1em;
 }
