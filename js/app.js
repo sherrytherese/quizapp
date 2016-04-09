@@ -11,7 +11,7 @@
 		questionNumber: 0},
 
 		{question: "Which cat leaves the most fish?",
-		choices: ["Fred", "Miss Fortune", "Chairman Meow"],
+		choices: ["Fred", "Ms. Fortune", "Chairman Meow"],
 		correctAnswer: 2,
 		questionNumber: 1}, 
 
@@ -34,6 +34,11 @@
 		choices: ["Sashimi", "Zanzibar Cushion", "Royal Bed"],
 		correctAnswer: 2,
 		questionNumber: 5},
+
+		{question: "What memento does Shadow leave you?",
+		choices: ["Cicada Skin", "Soft Brush", "Teaser Toy Tip"],
+		correctAnswer: 2,
+		questionNumber: 6},
 	]
 /*Functions*/
 //Display the Questions
